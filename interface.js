@@ -1,4 +1,4 @@
-const textarea = document.getElementById('textarea')
+const textarea = document.getElementsByTagName('textarea')[0]
 const sidebar = document.getElementsByTagName('sidebar')[0]
 const toggle = document.getElementsByTagName('toggle')[0]
 
@@ -22,21 +22,15 @@ const changeNote = (event) => {
     renderNote(title)
 }
 
-const boldFirstLine = (content) => {
-    let firstLine = content.split('\n')[0]
-    content = content.replace(firstLine, '')
-    return `<b>${firstLine}</b>${content}`
-}
-
 const renderNote = (title) => {
     activeNote.title = title
-    textarea.innerHTML = boldFirstLine(notes[title])
+    textarea.value = notes[title]
     if (!textareaVisible) toggleSidebar()
     textarea.focus()
 }
 
 const saveNote = () => {
-    let content = textarea.innerHTML
+    let content = textarea.value
     if (!content) return
 
     let title = getTitle(content)
@@ -82,7 +76,6 @@ const debounce = (func) => {
 */
 let notes = Object.assign({}, emptyNotes, JSON.parse(localStorage.getItem('notes')))
 renderSidebar(notes)
-textarea.focus();
 
 const reset = () => {
     notes = emptyNotes
@@ -107,7 +100,7 @@ const toggleSidebar = () => {
     }
 }
 
-textarea.addEventListener('keyup paste', debounce(saveNote))
+textarea.addEventListener('keyup', debounce(saveNote))
 toggle.addEventListener('click', toggleSidebar)
 
 if ('serviceWorker' in navigator) {

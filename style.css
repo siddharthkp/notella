@@ -11,7 +11,7 @@ body {
     border: none;
     outline: none;
 }
-#textarea {
+textarea {
     float: left;
     width: 80%;
     height: 100%;
@@ -50,7 +50,8 @@ toggle {
     sidebar {
         display: none;
     }
-    #textarea {
+    textarea {
+        float: none;
         width: 100%;
         height: calc(100% - 35px);
     }
