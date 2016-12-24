@@ -4,7 +4,7 @@ body {
     background-color: #EFEFEF;
 }
 * {
-    font-family: monospace;
+    font-family: 'Source Code Pro', monospace;
     font-size: 14px;
     line-height: 1.5;
     border: none;
@@ -29,13 +29,16 @@ sidebar {
     color: grey;
 }
 sidebar div {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 toggle {
     display: none;
 }
 
 @media (max-width: 800px) {
+    * {
+        font-size: 16px;
+    }
     toggle {
         display: block;
         color: grey;
@@ -57,11 +60,4 @@ toggle {
         width: 100%;
         height: calc(100% - 35px);
     }
-}
-
-
-buttons {
-    position: fixed;
-    bottom: 0;
-    left: 0;
 }
