@@ -1,4 +1,4 @@
-const textarea = document.getElementsByTagName('textarea')[0]
+const textarea = document.getElementById('textarea')
 const sidebar = document.getElementsByTagName('sidebar')[0]
 const toggle = document.getElementsByTagName('toggle')[0]
 
@@ -22,15 +22,21 @@ const changeNote = (event) => {
     renderNote(title)
 }
 
+const boldFirstLine = (content) => {
+    let firstLine = content.split('\n')[0]
+    content = content.replace(firstLine, '')
+    return `<b>${firstLine}</b>${content}`
+}
+
 const renderNote = (title) => {
     activeNote.title = title
-    textarea.value = notes[title]
-    if (!textareaVisible) toggleSidebar();
+    textarea.innerHTML = boldFirstLine(notes[title])
+    if (!textareaVisible) toggleSidebar()
     textarea.focus()
 }
 
 const saveNote = () => {
-    let content = textarea.value
+    let content = textarea.innerHTML
     if (!content) return
 
     let title = getTitle(content)
@@ -70,22 +76,13 @@ const debounce = (func) => {
 	}
 }
 
-/* Get local copy first */
+/*
+    Get local copy first
+    Get's overwrite with remote copy (store.js)= source of truth
+*/
 let notes = Object.assign({}, emptyNotes, JSON.parse(localStorage.getItem('notes')))
 renderSidebar(notes)
-
-/* Overwrite with remote copy = source of truth */
-getNotes().then(data => {
-    notes = Object.assign({}, emptyNotes, data)
-    renderSidebar(notes)
-    sync(data => {
-        notes = data
-        renderSidebar(notes)
-
-        /* Syncs notes between devices as long as the title doesn't change */
-        if (notes[activeNote.title]) renderNote(activeNote.title)
-    })
-})
+textarea.focus();
 
 const reset = () => {
     notes = emptyNotes
@@ -93,20 +90,26 @@ const reset = () => {
     location.reload(true)
 }
 
-let textareaVisible = true;
+let textareaVisible = true
 const toggleSidebar = () => {
     sidebar.style.display = sidebar.style.display === 'block' ? 'none': 'block'
     textarea.style.display = textarea.style.display === 'none' ? 'block': 'none'
     textareaVisible = !textareaVisible
     if (textareaVisible) {
-        toggle.innerHTML = '☰';
-        toggle.style.float = 'left';
-        textarea.focus();
+        toggle.innerHTML = '☰☰'
+        toggle.style.float = 'left'
+        toggle.style.top = -20;
+        textarea.focus()
     } else {
-        toggle.innerHTML = '✕';
-        toggle.style.float = 'right';
+        toggle.innerHTML = '✕'
+        toggle.style.top = -7;
+        toggle.style.float = 'right'
     }
 }
 
 textarea.addEventListener('keyup paste', debounce(saveNote))
-toggle.addEventListener('click', toggleSidebar);
+toggle.addEventListener('click', toggleSidebar)
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+}

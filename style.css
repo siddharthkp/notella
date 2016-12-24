@@ -11,10 +11,11 @@ body {
     border: none;
     outline: none;
 }
-textarea {
+#textarea {
     float: left;
     width: 80%;
     height: 100%;
+    margin: 0;
 }
 sidebar {
     float: left;
@@ -42,17 +43,16 @@ toggle {
         padding: 5px;
         float: left;
         height: 20px;
-        top: -7px;
-        left: -5px;
+        top: -20px;
+        left: -7px;
+        letter-spacing: -10px;
     }
     sidebar {
         display: none;
-
     }
-    textarea {
-        float: none;
+    #textarea {
         width: 100%;
-        height: calc(100% - 30px);
+        height: calc(100% - 35px);
     }
 }
 

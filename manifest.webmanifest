@@ -3,6 +3,7 @@
   "start_url": ".",
   "display": "standalone",
   "background_color": "#EFEFEF",
+  "theme_color": "#EFEFEF",
   "description": "A simple note taking app",
   "icons": [{
     "src": "icon.png",

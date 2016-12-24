@@ -17,6 +17,21 @@ const getNotes = () => {
     })
 }
 
+getNotes().then(data => {
+    notes = Object.assign({}, emptyNotes, data)
+    renderSidebar(notes)
+    saveLocally(notes)
+
+    /* Start sync */
+    sync(data => {
+        notes = data
+        renderSidebar(notes)
+
+        /* Syncs notes between devices as long as the title doesn't change */
+        if (notes[activeNote.title]) renderNote(activeNote.title)
+    })
+})
+
 const sync = (callback) => {
     database.on('value', snapshot => {
         if (snapshot.val()) callback(snapshot.val().notes)
