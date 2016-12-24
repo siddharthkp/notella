@@ -1,9 +1,16 @@
 {
   "name": "notes",
+  "main": "app.js",
   "scripts": {
-    "start": "serve -p 7713"
+    "start": "serve -p 7713",
+    "app": "electron .",
+    "build": "electron-packager . --platform=darwin --icon=icon.icns"
   },
   "dependencies": {
+    "electron": "1.4.13",
     "serve": "2.0.0"
+  },
+  "devDependencies": {
+    "electron-packager": "8.4.0"
   }
 }
