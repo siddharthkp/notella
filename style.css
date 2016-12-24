@@ -1,8 +1,7 @@
 body {
     margin: 0;
-    padding: 25px;
-    width: calc(100% - 50px);
-    height: calc(100% - 50px);
+    padding: 25px 0 25px 25px;
+    background-color: #EFEFEF;
 }
 * {
     font-family: monospace;
@@ -12,6 +11,8 @@ body {
     outline: none;
 }
 textarea {
+    background-color: #EFEFEF;
+    padding-right: 25px;
     float: left;
     width: 80%;
     height: 100%;
@@ -49,6 +50,7 @@ toggle {
     }
     sidebar {
         display: none;
+        width: 90%;
     }
     textarea {
         float: none;
