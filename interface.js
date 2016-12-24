@@ -92,10 +92,12 @@ const toggleSidebar = () => {
         toggle.innerHTML = '☰☰'
         toggle.style.float = 'left'
         toggle.style.top = -20;
+        toggle.style.left = -7;
         textarea.focus()
     } else {
         toggle.innerHTML = '✕'
         toggle.style.top = -7;
+        toggle.style.left = -20;
         toggle.style.float = 'right'
     }
 }
