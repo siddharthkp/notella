@@ -1,0 +1,12 @@
+{
+  "name": "Notes",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#EFEFEF",
+  "description": "A simple note taking app",
+  "icons": [{
+    "src": "icon.png",
+    "sizes": "300x300",
+    "type": "image/png"
+  }]
+}
