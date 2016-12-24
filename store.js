@@ -26,7 +26,7 @@ getNotes().then(data => {
     sync(data => {
         notes = data
         renderSidebar(notes)
-
+        saveLocally(notes)
         /* Syncs notes between devices as long as the title doesn't change */
         if (notes[activeNote.title]) renderNote(activeNote.title)
     })

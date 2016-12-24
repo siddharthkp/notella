@@ -25,7 +25,7 @@ sidebar {
     height: 100%;
     margin-right: 5%;
     white-space: nowrap;
-    overflow: hidden;
+    overflow-x: hidden;
     color: grey;
 }
 sidebar div {

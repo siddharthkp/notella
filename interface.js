@@ -33,14 +33,15 @@ const renderNote = (title) => {
 
 const saveNote = () => {
     let content = textarea.value
-    if (!content) return
-
     let title = getTitle(content)
 
     if (activeNote.title !== '_new note') delete notes[activeNote.title]
-    activeNote.title = title
 
-    notes[title] = content
+    /* If the note is empty, delete it */
+    if (content) {
+        activeNote.title = title
+        notes[title] = content
+    }
 
     saveNotes()
 }
