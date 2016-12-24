@@ -1,0 +1,9 @@
+{
+  "name": "notes",
+  "scripts": {
+    "start": "serve -p 7711"
+  },
+  "dependencies": {
+    "serve": "2.0.0"
+  }
+}

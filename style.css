@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 25px;
+    width: calc(100% - 50px);
+    height: calc(100% - 50px);
+}
+* {
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    border: none;
+    outline: none;
+}
+textarea {
+    float: left;
+    width: 80%;
+    height: 100%;
+}
+sidebar {
+    float: left;
+    width: 15%;
+    min-width: 100px;
+    height: 100%;
+    margin-right: 5%;
+    white-space: nowrap;
+    overflow: hidden;
+    color: grey;
+}
+sidebar div {
+    margin-bottom: 10px;
+}
+toggle {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    toggle {
+        display: block;
+        color: grey;
+        position: relative;
+        font-size: 16px;
+        padding: 5px;
+        float: left;
+        height: 20px;
+        cursor: pointer;
+        top: -7px;
+        left: -5px;
+    }
+    sidebar {
+        display: none;
+
+    }
+    textarea {
+        float: none;
+        width: 100%;
+        height: calc(100% - 30px);
+    }
+}
+
+
+buttons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
