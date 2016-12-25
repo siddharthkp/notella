@@ -4,7 +4,7 @@
   "scripts": {
     "start": "serve -p 7713",
     "app": "electron .",
-    "build": "electron-packager . --platform=darwin --icon=icon.icns"
+    "build": "electron-packager . --platform=darwin --icon=icon.icns --out app"
   },
   "dependencies": {
     "electron": "1.4.13",

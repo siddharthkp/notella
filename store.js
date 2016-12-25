@@ -1,3 +1,7 @@
+/* unique identifier */
+let database;
+
+/* initialize firebase */
 const config = {
     apiKey: "AIzaSyC3yBT7RUgr7rqpcKaIIoKQxIdbVy5_c1Q",
     authDomain: "notes-65612.firebaseapp.com",
@@ -6,7 +10,33 @@ const config = {
     messagingSenderId: "241953144431"
 }
 firebase.initializeApp(config)
-const database = firebase.database().ref('/siddharthkp')
+
+/* Authenticate anonymously */
+firebase.auth().onAuthStateChanged(user => {
+    if (user) initDatabase(user.uid);
+    else firebase.auth().signInAnonymously();
+});
+
+const initDatabase = (uid) => {
+    database = firebase.database().ref(`/${uid}`)
+}
+
+const initNotes = () => {
+    getNotes().then(data => {
+        notes = Object.assign({}, emptyNotes, data)
+        renderSidebar(notes)
+        saveLocally(notes)
+
+        /* Start sync */
+        sync(data => {
+            notes = data
+            renderSidebar(notes)
+            saveLocally(notes)
+            /* Syncs notes between devices as long as the title doesn't change */
+            if (notes[activeNote.title]) renderNote(activeNote.title)
+        })
+    })
+}
 
 const persist = (notes) => {database.set({notes})}
 
@@ -16,21 +46,6 @@ const getNotes = () => {
         else return {}
     })
 }
-
-getNotes().then(data => {
-    notes = Object.assign({}, emptyNotes, data)
-    renderSidebar(notes)
-    saveLocally(notes)
-
-    /* Start sync */
-    sync(data => {
-        notes = data
-        renderSidebar(notes)
-        saveLocally(notes)
-        /* Syncs notes between devices as long as the title doesn't change */
-        if (notes[activeNote.title]) renderNote(activeNote.title)
-    })
-})
 
 const sync = (callback) => {
     database.on('value', snapshot => {
