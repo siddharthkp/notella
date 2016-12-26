@@ -11,14 +11,16 @@ const config = {
 }
 firebase.initializeApp(config)
 
-/* Authenticate anonymously */
+/* Authenticate with twitter */
+const provider = new firebase.auth.TwitterAuthProvider();
 firebase.auth().onAuthStateChanged(user => {
-    if (user) initDatabase(user.uid);
-    else firebase.auth().signInAnonymously();
+  if (user) initDatabase(user.uid)
+  else firebase.auth().signInWithRedirect(provider);
 });
 
 const initDatabase = (uid) => {
     database = firebase.database().ref(`/${uid}`)
+    initNotes()
 }
 
 const initNotes = () => {
