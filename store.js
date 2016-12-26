@@ -1,5 +1,5 @@
 /* unique identifier */
-let database;
+let database
 
 /* initialize firebase */
 const config = {
@@ -12,11 +12,11 @@ const config = {
 firebase.initializeApp(config)
 
 /* Authenticate with twitter */
-const provider = new firebase.auth.TwitterAuthProvider();
+const provider = new firebase.auth.TwitterAuthProvider()
 firebase.auth().onAuthStateChanged(user => {
   if (user) initDatabase(user.uid)
-  else firebase.auth().signInWithRedirect(provider);
-});
+  else firebase.auth().signInWithRedirect(provider)
+})
 
 const initDatabase = (uid) => {
     database = firebase.database().ref(`/${uid}`)
