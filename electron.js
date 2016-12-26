@@ -1,3 +1,7 @@
+/*
+    Auth doesn't work on electron :(
+*/
+
 const electron = require('electron')
 
 const app = electron.app

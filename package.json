@@ -7,10 +7,6 @@
     "build": "electron-packager . --platform=darwin --icon=icon.icns --out app"
   },
   "dependencies": {
-    "electron": "1.4.13",
     "serve": "2.0.0"
-  },
-  "devDependencies": {
-    "electron-packager": "8.4.0"
   }
 }
