@@ -10,6 +10,9 @@ body {
     border: none;
     outline: none;
 }
+a {
+    text-decoration: none;
+}
 textarea {
     background-color: #EFEFEF;
     padding-right: 25px;
