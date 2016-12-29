@@ -11,3 +11,15 @@
 - night mode 🌚
 
 built with [firebase](https://firebase.google.com), hosted on [now](https://zeit.co/now)
+
+### Like it?
+
+:star: this repo
+
+### Found a bug?
+
+Raise an issue!
+
+### License
+
+MIT © [siddharthkp](https://github.com/siddharthkp)
