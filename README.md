@@ -10,4 +10,4 @@
 - add to home screen
 - night mode 🌚
 
-built with [firebase](firebase.google.com), hosted on [now](zeit.co/now)
+built with [firebase](https://firebase.google.com), hosted on [now](https://zeit.co/now)
