@@ -6,7 +6,7 @@ body {
 * {
     font-family: 'Droid Sans Mono', monospace;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 2;
     border: none;
     outline: none;
 }
@@ -29,7 +29,7 @@ sidebar {
     color: grey;
 }
 sidebar div {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 toggle {
     display: none;

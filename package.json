@@ -1,5 +1,5 @@
 {
-  "name": "notes",
+  "name": "notella",
   "main": "app.js",
   "scripts": {
     "start": "serve -p 7713"
