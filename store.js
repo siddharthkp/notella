@@ -23,17 +23,30 @@ const initDatabase = (uid) => {
     initNotes()
 }
 
+const mergeNotes = (notes, data) => {
+    let newNotes = Object.assign({}, emptyNotes)
+    let keys = Object.keys(data)
+    for (let i = 0; i < keys.length; i++) {
+        let title = keys[i]
+        if (!notes[title]) newNotes[title] = data[title]
+        else if (notes[title].modified > data[title].modified) newNotes[title] = notes[title]
+        else newNotes[title] = data[title]
+    }
+    return newNotes
+}
+
 const initNotes = () => {
     getNotes().then(data => {
-        notes = Object.assign({}, emptyNotes, data)
+        notes = mergeNotes(notes, data)
         renderSidebar(notes)
         saveLocally(notes)
 
         /* Start sync */
         sync(data => {
-            notes = data
+            notes = mergeNotes(notes, data)
             renderSidebar(notes)
             saveLocally(notes)
+            persist(notes)
             /* Syncs notes between devices as long as the title doesn't change */
             if (notes[activeNote.title]) renderNote(activeNote.title)
         })
