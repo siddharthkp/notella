@@ -5,7 +5,9 @@ const toggle = document.getElementsByTagName('toggle')[0]
 const night = document.getElementsByTagName('night')[0]
 
 const emptyNotes = {
-    '_new note': ''
+    '_new note': {
+        content: ''
+    }
 }
 
 const activeNote = {
@@ -26,7 +28,7 @@ const changeNote = (event) => {
 
 const renderNote = (title) => {
     activeNote.title = title
-    textarea.value = notes[title]
+    textarea.value = notes[title].content
     if (!textareaVisible) toggleSidebar()
     textarea.focus()
 }
@@ -40,7 +42,8 @@ const saveNote = () => {
     /* If the note is empty, delete it */
     if (content) {
         activeNote.title = title
-        notes[title] = content
+        let modified = new Date().getTime()
+        notes[title] = {content, modified}
     }
 
     saveNotes()
@@ -56,8 +59,8 @@ const saveLocally = (notes) => {
     localStorage.setItem('notes', JSON.stringify(notes))
 }
 
-const getTitle = (note) => {
-    return note.split('\n')[0].replace('#', '')
+const getTitle = (content) => {
+    return content.split('\n')[0].replace('#', '')
 }
 
 const debounce = (func) => {
