@@ -2,9 +2,7 @@
   "name": "notes",
   "main": "app.js",
   "scripts": {
-    "start": "serve -p 7713",
-    "app": "electron .",
-    "build": "electron-packager . --platform=darwin --icon=icon.icns --out app"
+    "start": "serve -p 7713"
   },
   "dependencies": {
     "serve": "2.0.0"
