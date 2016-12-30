@@ -1,6 +1,6 @@
 ![notella](https://github.com/siddharthkp/notella/blob/master/art/banner.png?raw=true?raw=true)
 
-<p align="center"><a href="notella.now.sh">notella.now.sh</a></p>
+<p align="center"><a href="https://notella.now.sh">notella.now.sh</a></p>
 
 ![screenshot](https://github.com/siddharthkp/notella/blob/master/art/screen.png?raw=true?raw=true)
 
