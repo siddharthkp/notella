@@ -20,6 +20,7 @@ textarea {
     width: 80%;
     height: 100%;
     margin: 0;
+    resize: none;
 }
 sidebar {
     float: left;
