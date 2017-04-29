@@ -23,6 +23,30 @@ const initDatabase = (uid) => {
     initNotes()
 }
 
+
+// the key could be title or uid, if former then we replace it with uid and add title to the object.
+const migrateAndMergeNotes = (notes, data) => {
+  let newNotes = Object.assign({}, emptyNotes)
+  let keys = Object.keys(data)
+  for (let i = 0; i < keys.length; i++) {
+      let uid = keys[i] // the key could be title or uid
+
+      // First merge them.
+      if (!notes[uid]) newNotes[uid] = data[uid]
+      else if (notes[uid].modified > data[uid].modified) newNotes[uid] = notes[uid]
+      else newNotes[uid] = data[uid]
+
+      // Now if it is based on Old Title key model we replace it to new UID one.
+      let note = newNotes[uid]
+      // since old object didn't have a title it will return undefined
+      if (typeof note.title === undefined){
+        newNotes[uuid.v1()] = {title: uid, content: note.content, modified: note.modified}
+        delete newNotes[uid]
+      }
+  }
+  return newNotes
+}
+
 const mergeNotes = (notes, data) => {
     let newNotes = Object.assign({}, emptyNotes)
     let keys = Object.keys(data)
@@ -37,18 +61,20 @@ const mergeNotes = (notes, data) => {
 
 const initNotes = () => {
     getNotes().then(data => {
-        notes = mergeNotes(notes, data)
+        notes = migrateAndMergeNotes(notes, data)
+        // notes = mergeNotes(notes, data)
         renderSidebar(notes)
         saveLocally(notes)
 
         /* Start sync */
         sync(data => {
-            notes = mergeNotes(notes, data)
+            notes = migrateAndMergeNotes(notes, data)
+            // notes = mergeNotes(notes, data)
             renderSidebar(notes)
             saveLocally(notes)
             persist(notes)
             /* Syncs notes between devices as long as the title doesn't change */
-            if (notes[activeNote.title]) renderNote(activeNote.title)
+            if (notes[activeNote.uid]) renderNote(activeNote.uid)
         })
     })
 }

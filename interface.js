@@ -6,45 +6,55 @@ const night = document.getElementsByTagName('night')[0]
 
 const emptyNotes = {
     '_new note': {
+        title: '_new note',
         content: ''
     }
 }
 
 const activeNote = {
-    title: Object.keys(emptyNotes)[0]
+    uid: Object.keys(emptyNotes)[0]
 }
 
 const renderSidebar = (notes) => {
-    let titles = Object.keys(notes).sort()
+    let uids = Object.keys(notes).sort()
     let html = ''
-    for (let title of titles) html += `<div onclick="changeNote(event)">${title}</div>`
+    for (let uid of uids) html += `<div onclick="changeNote(event)" data-id="${uid}">${notes[uid].title}</div>`
     list.innerHTML = html
 }
 
 const changeNote = (event) => {
-    let title = event.target.innerHTML
-    renderNote(title)
+    let uid = event.target.dataset.id
+    renderNote(uid)
 }
 
-const renderNote = (title) => {
-    activeNote.title = title
-    textarea.value = notes[title].content
+const renderNote = (uid) => {
+    activeNote.uid = uid
+    textarea.value = notes[uid].content
     if (!textareaVisible) toggleSidebar()
+    textarea.setAttribute('data-id', uid)
     textarea.focus()
 }
 
 const saveNote = () => {
     let content = textarea.value
     let title = getTitle(content)
-
-    if (activeNote.title !== '_new note') delete notes[activeNote.title]
-
+    let uid;
+    // if uid is blank generate new one, else delete old entry with same uid
+    if (activeNote.uid === '_new note') {
+      uid = uuid.v1()
+      activeNote.uid = uid // set active note to newly saved note
+    } else {
+      delete notes[activeNote.uid]
+      uid = activeNote.uid
+    }
     /* If the note is empty, delete it */
     if (content) {
-        activeNote.title = title
         let modified = new Date().getTime()
-        notes[title] = {content, modified}
+        notes[uid] = {title, content, modified}
     }
+    console.log(uid)
+    console.log(activeNote)
+    console.log(notes)
 
     saveNotes()
 }
