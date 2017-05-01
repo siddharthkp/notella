@@ -5,6 +5,7 @@ self.addEventListener('install', e => {
             '/',
             '/index.html',
             '/style.css',
+            '/uuid.js',
             '/interface.js',
             '/store.js'
         ])
