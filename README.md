@@ -1,19 +1,19 @@
 ![notella](https://github.com/siddharthkp/notella/blob/master/art/banner.png?raw=true?raw=true)
 
-<p align="center"><a href="https://notella.now.sh">notella.now.sh</a></p>
+<p align="center"><a href="https://siddharthkp.github.io/notella">siddharthkp.github.io/notella</a></p>
 
 ![screenshot](https://github.com/siddharthkp/notella/blob/master/art/screen.png?raw=true?raw=true)
 
 ### Features
 
-- clean design
-- progressive web app
-- sync between devices
-- offline support
-- add to home screen
-- night mode 🌚
+* clean design
+* progressive web app
+* sync between devices
+* offline support
+* add to home screen
+* night mode 🌚
 
-built with [firebase](https://firebase.google.com), hosted on [now](https://zeit.co/now)
+built with [firebase](https://firebase.google.com)
 
 ### Like it?
 
