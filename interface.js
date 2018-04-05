@@ -17,13 +17,38 @@ const activeNote = {
 const renderSidebar = (notes) => {
     let titles = Object.keys(notes).sort()
     let html = ''
-    for (let title of titles) html += `<div onclick="changeNote(event)">${title}</div>`
+    for (let title of titles) {
+        if (title == '_new note') {
+            html += `<div>
+                        <span onclick="changeNote(event)">${title}</span>
+                    </div>`
+        } else {
+            html += `<div>
+                        <span onclick="changeNote(event)">${title}</span>
+                        <svg onclick="deleteNote(event)" width="16" height="16" viewBox="0 0 24 24">
+                          <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                        </svg>
+                    </div>`
+        }
+        
+    }
     list.innerHTML = html
 }
 
 const changeNote = (event) => {
     let title = event.target.innerHTML
     renderNote(title)
+}
+
+const deleteNote = (event) => {
+    let title = event.currentTarget.previousElementSibling.innerHTML
+    if(activeNote.title == title) {
+        delete notes[title]
+        renderNote('_new note')
+    } else {
+        delete notes[title]
+    }
+    saveNotes()
 }
 
 const renderNote = (title) => {
@@ -106,15 +131,20 @@ const setTheme = () => {
     if (localStorage.night) {
         theme = {
             backgroundColor: '#20222B',
-            color: '#EFEFEF'
+            color: '#EFEFEF',
+            fill: '#313438'
         }
         icon = '☀️'
+        /* sidebar seprator border-color */
+        Object.assign(sidebar.style, { borderColor: '#313238' })
     } else {
         theme = {
             backgroundColor: '#EFEFEF',
-            color: '#333'
+            color: '#333',
+            fill: '#ddd'
         }
         icon = '🌚'
+        Object.assign(sidebar.style, { borderColor: '#ddd' })
     }
 
     Object.assign(document.body.style, theme)
