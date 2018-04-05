@@ -37,9 +37,6 @@ sidebar {
     border-right: 1px solid #ddd;
 }
 
-sidebar div:hover svg {
-    opacity: 1;
-}
 sidebar div {
     margin-bottom: 10px;
     cursor: pointer;
@@ -55,6 +52,10 @@ sidebar div svg {
     line-height: 30px;
     vertical-align: middle;
     transition: 0.3s;
+}
+
+sidebar div:hover svg {
+    opacity: 1;
 }
 
 night {
@@ -84,6 +85,9 @@ toggle {
     sidebar {
         display: none;
         width: 100%;
+    }
+    sidebar div svg {
+        opacity: 1;
     }
     textarea {
         float: none;
