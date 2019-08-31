@@ -7,7 +7,12 @@
   "description": "A simple note taking app",
   "icons": [{
     "src": "icon.png",
-    "sizes": "300x300",
+    "sizes": "256x256",
     "type": "image/png"
+  }, {
+    "src": "maskable.png",
+    "sizes": "256x256",
+    "type": "image/png",
+    "purpose": "maskable"
   }]
 }
