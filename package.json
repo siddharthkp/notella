@@ -5,6 +5,6 @@
     "start": "serve -p 7713"
   },
   "dependencies": {
-    "serve": "2.0.0"
+    "serve": "11.3.2"
   }
 }
