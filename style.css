@@ -3,6 +3,7 @@ body {
     padding: 25px 0 25px 25px;
     background-color: #EFEFEF;
 }
+
 * {
     font-family: 'Droid Sans Mono', monospace;
     font-size: 14px;
@@ -10,31 +11,57 @@ body {
     border: none;
     outline: none;
 }
+
 a {
     text-decoration: none;
 }
+
 textarea {
     background-color: #EFEFEF;
-    padding-right: 25px;
+    padding: 0px 25px;
     float: left;
     width: 80%;
     height: 100%;
     margin: 0;
     resize: none;
 }
+
 sidebar {
     float: left;
-    width: 15%;
+    width: 19%;
     min-width: 100px;
     height: 100%;
-    margin-right: 5%;
     white-space: nowrap;
     overflow-x: hidden;
     color: grey;
+    border-right: 1px solid #ddd;
 }
+
 sidebar div {
     margin-bottom: 10px;
+    cursor: pointer;
 }
+
+sidebar div span {
+    display: inline-block;
+    width: 85%;
+}
+
+sidebar div svg {
+    opacity: 0;
+    line-height: 30px;
+    vertical-align: middle;
+    transition: 0.3s;
+}
+
+sidebar div:hover svg {
+    opacity: 1;
+}
+
+night {
+    cursor: pointer;
+}
+
 toggle {
     display: none;
 }
@@ -58,6 +85,9 @@ toggle {
     sidebar {
         display: none;
         width: 100%;
+    }
+    sidebar div svg {
+        opacity: 1;
     }
     textarea {
         float: none;
